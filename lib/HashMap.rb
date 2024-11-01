@@ -63,15 +63,31 @@ class HashMap
     removed[1]
   end
 
+  def length
+    @size
+  end
+
+  def clear
+    @buckets = Array.new(@buckets.length)
+  end
+
+  def keys
+    @buckets.compact.flatten(1).map(&:first)
+  end
+
+  def values
+    @buckets.compact.flatten(1).map(&:last)
+  end
+
+  def entries
+    @buckets.compact.flatten(1)
+  end
+
+
+
   def check(index)
     raise IndexError if index.negative? || index >= @buckets.length
   end
 
 end
 
-test = HashMap.new
-test.set('pik','fed')
-p test
-test.set('pik','slap')
-test.set('kusse', 'tyk')
-p test.get('kusse')
